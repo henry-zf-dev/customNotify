@@ -61,7 +61,6 @@ export default {
           alarmNotify && (alarmNotify.close());
           this.notifyHdl[notifyId] = this.$customNotify({
             type: 'alarmTrigger',
-            duration: 0,
             data: {
               title: `${random} 个会议室触发了 [视频矩阵离线告警]`,
               subtitle: '最近告警会议室: 五楼会议室 5F-501',
