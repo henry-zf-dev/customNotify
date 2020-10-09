@@ -3,7 +3,6 @@
 
 ### Demo
 ![custom-notify-demo](src/assets/custom-notify-demo.png)
-
 ---
 
 ### Usage
