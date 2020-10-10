@@ -73,7 +73,7 @@ export default {
       shake: false,
       hover: false,
       closed: false,
-      onClose: () => {},
+      onclose: () => {},
       timer: null,
       data: {
         title: '',
@@ -143,8 +143,8 @@ export default {
     close () {
       if (this.closed) return;
       this.closed = true;
-      this.onClose();
       this.visible = false;
+      this.onclose();
       this.$el.addEventListener('transitionend', this.destroyElement);
     },
     destroyElement () {
@@ -219,7 +219,7 @@ export default {
     -moz-transition: opacity .3s, transform .3s, top .3s, right .3s;
     -o-transition: opacity .3s, transform .3s, top .3s, right .3s;
     width: 330px;
-    z-index: 9999;
+    z-index: 2000;
   }
 
   .default-notify-container {

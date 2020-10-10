@@ -17,8 +17,10 @@ const CustomNotify = function (options = {}) {
   instance.$mount();
   instance.visible = true;
   instance.dom = instance.$el;
-  options.onClose = function () {
-    CustomNotify.close(id);
+  // 缓存用户重写的 onclose 事件，用于在 onclose 时对 instances 进行额外的操作
+  const userOnclose = options.onclose;
+  options.onclose = function() {
+    CustomNotify.close(id, userOnclose);
   };
 
   let top = 0;
@@ -32,7 +34,7 @@ const CustomNotify = function (options = {}) {
   return instance;
 };
 
-CustomNotify.close = function (id) {
+CustomNotify.close = function (id, userOnclose) {
   let index = -1;
   const len = instances.length;
   const instance = instances.filter((instance, i) => {
@@ -43,7 +45,11 @@ CustomNotify.close = function (id) {
     return false;
   })[0];
   if (!instance) return;
-  instance.visible = false;
+
+  if (typeof userOnclose === 'function') {
+    userOnclose(instance);
+  }
+
   instances.splice(index, 1);
   if (len <= 1) return;
   const removedHeight = instance.dom.offsetHeight;
