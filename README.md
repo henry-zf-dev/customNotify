@@ -7,6 +7,12 @@
 
 ### Usage
 ```javascript
+// main.js
+import CustomNotify from '/src/components/customNotify';
+Vue.prototype.$customNotify = CustomNotify;
+```
+
+```javascript
 // 常规消息
 this.$customNotify({
   type: 'success', // success | warning | info | error
